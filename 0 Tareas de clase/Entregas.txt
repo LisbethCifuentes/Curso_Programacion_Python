@@ -1,0 +1,12 @@
+#1. Homework 1 - Instalar Git, Crear GitHub, Instalar Github Destop, Clonar repositorio, Crear repositorio publico del curso
+Fecha:2025-11-18
+https://github.com/LisbethCifuentes/Curso_Programacion_Python/tree/master
+
+#2 Homerwork 2 - Simple Server
+Imagen Celular
+
+
+#3. Homework-Code-1 
+App.py - Tema: Mascotas (Pets)
+Fecha: 2025-11-24 
+https://github.com/LisbethCifuentes/Curso_Programacion_Python/tree/master/0%20Tareas%20de%20clase/App_Pet
