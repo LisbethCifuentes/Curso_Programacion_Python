@@ -3,8 +3,13 @@ from rest_framework.response import Response
 from rest_framework import status
 from dynamicpages.models import FurnitureItem
 
-
-@api_view(['GET'])
+@api_view(['GET','DELETE'])
+def handle_furniture(request, id):
+    if  request.method == "GET":
+        return get_furniture(request, id)
+    else:
+        return delete_furniture(request,id)
+                
 def get_furniture(request, id):
     """
     🪑 GET - Obtener un mueble por ID desde MongoDB
@@ -133,7 +138,6 @@ def put_furniture(request, id):
         }, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['DELETE'])
 def delete_furniture(request, id):
     """
     🪑 DELETE - Eliminar un mueble de MongoDB

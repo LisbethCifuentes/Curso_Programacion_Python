@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
@@ -155,7 +154,5 @@ mongoengine.connect(
     port=27017
 )
 
-# Configurar redirecciones de autenticación
-LOGIN_REDIRECT_URL = '/dynamic-pages/'
-LOGOUT_REDIRECT_URL = '/dynamic-pages/'
-LOGIN_URL = '/dynamic-pages/login/'
+
+

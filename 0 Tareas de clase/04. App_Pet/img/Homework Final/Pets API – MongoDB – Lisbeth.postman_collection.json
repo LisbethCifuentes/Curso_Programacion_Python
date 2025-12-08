@@ -1,0 +1,75 @@
+{
+	"info": {
+		"_postman_id": "d9e8d407-54c0-41e4-8c06-4bb9a79af726",
+		"name": "Pets API – MongoDB – Lisbeth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50329595",
+		"_collection_link": "https://lisbethcifuentes-9258608.postman.co/workspace/lis_cifuentes's-Workspace~6f3fded2-e21e-44d4-828a-087d5319db33/collection/50329595-d9e8d407-54c0-41e4-8c06-4bb9a79af726?action=share&source=collection_link&creator=50329595"
+	},
+	"item": [
+		{
+			"name": "SignUp – Client",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Create User – Admin",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Login – Client",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Create Pet – With Token",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pets – All",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pets – Filter Species Dog",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pets – Filter Vaccinated True",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pets – Dog + Vaccinated",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

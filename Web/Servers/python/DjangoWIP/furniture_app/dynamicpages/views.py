@@ -14,6 +14,17 @@ def lista_muebles(request):
     
     return render(request, 'dynamicpages/lista_muebles.html', contexto)
 
+def lista_muebles_v2(request):
+    """Vista que consulta MongoDB y muestra muebles"""
+    muebles = FurnitureItem.objects.filter(publicado=True).order_by('-fecha_creacion')
+    
+    contexto = {
+        'muebles': muebles,
+        'titulo_pagina': 'Catálogo de Muebles'
+    }
+    
+    return render(request, 'dynamicpages/new_list_version.html', contexto)
+
 def detalle_mueble(request, id):
     """Vista que muestra un mueble específico"""
     mueble = FurnitureItem.objects.get(id=id, publicado=True)
@@ -26,6 +37,7 @@ def detalle_mueble(request, id):
 
 def crear_mueble(request):
     """Vista para crear un nuevo mueble en MongoDB (sin autenticación)"""
+    print(f"Method: {request.method}")
     if request.method == 'POST':
         mueble = FurnitureItem(
             nombre=request.POST['nombre'],
@@ -40,5 +52,5 @@ def crear_mueble(request):
         
         messages.success(request, f'Mueble "{mueble.nombre}" agregado exitosamente!')
         return redirect('lista_muebles')
-    
-    return render(request, 'dynamicpages/crear_mueble.html')
+    else:
+        return render(request, 'dynamicpages/crear_mueble.html')
