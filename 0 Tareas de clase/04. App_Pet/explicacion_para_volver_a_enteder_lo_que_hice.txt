@@ -1,0 +1,105 @@
+Cliente (Postman / Navegador)
+
+1. Envía peticiones HTTP a tu API.
+
+Postman → prueba JSON (signup, login, crear pet, filtros).
+
+Navegador → consume /pets/html (SSR con tabla HTML).
+
+2. Flask App (Backend)
+
+app.py crea la app y registra los blueprints.
+
+auth_routes.py maneja usuarios y tokens.
+
+pets_routes.py maneja mascotas, filtros y SSR.
+
+models/ define la lógica de acceso a datos (pets y users).
+
+templates/ define cómo se ve la página HTML.
+
+db.py centraliza la conexión a MongoDB.
+
+3. MongoDB Server
+
+Guarda todos los datos reales del sistema.
+
+Base pets_db con colecciones pets y users.
+
+4. MongoDB Compass
+
+Es el “visor” de la base de datos.
+
+Deja comprobar que lo que envías desde Postman/Flask realmente se guarda.
+
+5. Arquitectura
+
+               (1) Cliente / Tester
+       ┌─────────────────────────────────┐
+       │  Postman / Navegador Web        │
+       │  - Peticiones HTTP (GET, POST)  │
+       └───────────────┬─────────────────┘
+                       │  HTTP (JSON / HTML)
+                       ▼
+           (2) Aplicación Backend Flask (app.py)
+       ┌────────────────────────────────────────────┐
+       │              Flask App                     │
+       │  (create_app, registro de blueprints)      │
+       │                                            │
+       │  ┌──────────────────────────────────────┐  │
+       │  │        Módulos de Rutas (routes/)   │  │
+       │  │                                      │ │
+       │  │  auth_routes.py                      │ │
+       │  │   - /auth/signup                     │ │
+       │  │   - /auth/create                     │ │
+       │  │   - /auth/login                      │ │
+       │  │   - Manejo de TOKENS en memoria      │ │
+       │  │                                      │ │
+       │  │  pets_routes.py                      │ │
+       │  │   - /pets/ (GET, POST, DELETE)       │ │
+       │  │   - /pets/html (SSR)                 │ │
+       │  │   - Filtros species, vaccinated      │ │
+       │  └──────────────────────────────────────┘ │
+       │                                            │
+       │  ┌──────────────────────────────────────┐  │
+       │  │         Modelos (models/)           │  │
+       │  │  pet_model.py                       │  │
+       │  │   - seed_pets()                     │  │
+       │  │   - pet_to_json()                   │  │
+       │  │                                     │  │
+       │  │  user_model.py                      │  │
+       │  │   - create_user()                   │  │
+       │  │   - verify_user()                   │  │
+       │  └──────────────────────────────────────┘ │
+       │                                            │
+       │  ┌──────────────────────────────────────┐  │
+       │  │   Templates (templates/)            │  │
+       │  │   - base.html                       │  │
+       │  │   - pets_list.html (SSR)            │  │
+       │  └──────────────────────────────────────┘ │
+       │                                            │
+       │  ┌──────────────────────────────────────┐  │
+       │  │     Capa de BD (db.py)               │ │
+       │  │   - get_db()                         │ │
+       │  │   - init_db() (cierre de cliente)    │ │
+       │  └──────────────────────────────────────┘ │
+       └───────────────────────┬────────────────────┘
+                               │  Conexión MONGO_URI
+                               ▼
+                 (3) Servidor de Base de Datos MongoDB
+       ┌────────────────────────────────────────────┐
+       │            MongoDB Server                  │
+       │   Base de datos: pets_db                   │
+       │   Colecciones:                             │
+       │    - pets  (mascotas)                      │
+       │    - users (usuarios autenticados)         │
+       └───────────────────────┬────────────────────┘
+                               │
+                               ▼
+                (4) Herramienta de Administración
+       ┌────────────────────────────────────────────┐
+       │            MongoDB Compass                 │
+       │   - Visualiza pets_db                      │
+       │   - Muestra colecciones pets y users       │
+       │   - Permite ver, filtrar y editar docs     │
+       └────────────────────────────────────────────┘
