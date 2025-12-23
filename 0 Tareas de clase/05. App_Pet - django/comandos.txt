@@ -1,0 +1,58 @@
+# Iniciar
+docker-compose up --build
+
+# Iniciar en segundo plano, me funciono con este
+docker-compose up -d
+
+#abrir otra terminal 
+docker exec -it pets-django-api python manage.py migrate
+
+#y luego
+docker exec -it pets-django-api python manage.py createsuperuser
+#aqui creamos el usuario
+
+#luego ya podemos crear mascotas, eliminar etc
+
+# Ver logs
+docker logs pets-django-api
+docker logs pets-mongodb
+
+# Detener
+docker-compose down
+
+# Limpiar todo (incluye volúmenes)
+docker-compose down -v
+
+Ejemplos de uso 
+
+# 1. Obtener token
+curl -X POST http://localhost:8000/api/token/ \
+  -H "Content-Type: application/json" \
+  -d '{"username": "admin", "password": "admin123"}'
+
+# 2. Crear mascota
+curl -X POST http://localhost:8000/api/pets/ \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -d '{"name": "Luna", "species": "Cat", "age": 2, "owner": "Maria", "vaccinated": true}'
+
+ -H "Content-Type: application/json" \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY2NTMwODEyLCJpYXQiOjE3NjY1MjcyMTIsImp0aSI6ImYzYzU1ODE3YTVlMjQ5NDc4ZDIyYzI0ZjhiYzU0YjFjIiwidXNlcl9pZCI6Mn0.HTakUNtOqVutSAHV2XATCt6eScVtBQYsJAgk9cc87QY" \
+  -d '{"name": "Luna", "species": "Cat", "age": 2, "owner": "Maria", "vaccinated": true}'
+
+curl.exe -X POST http://localhost:8000/api/pets/ -H "Content-Type: application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY2NTMwODEyLCJpYXQiOjE3NjY1MjcyMTIsImp0aSI6ImYzYzU1ODE3YTVlMjQ5NDc4ZDIyYzI0ZjhiYzU0YjFjIiwidXNlcl9pZCI6Mn0.HTakUNtOqVutSAHV2XATCt6eScVtBQYsJAgk9cc87QY" -d '{\"name\": \"Max\", \"species\": \"Dog\", \"age\": 3, \"owner\": \"Juan\", \"vaccinated\": true}'
+
+
+# 3. Listar mascotas
+curl http://localhost:8000/api/pets/ \
+  -H "Authorization: Bearer TU_TOKEN"
+
+# 4. Actualizar mascota
+curl -X PUT http://localhost:8000/api/pets/ID_MASCOTA/ \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer TU_TOKEN" \
+  -d '{"age": 4}'
+
+# 5. Eliminar mascota
+curl -X DELETE http://localhost:8000/api/pets/ID_MASCOTA/ \
+  -H "Authorization: Bearer TU_TOKEN"

@@ -1,0 +1,44 @@
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: pets-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: pets_database
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - pets-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  django-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pets-django-api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGO_HOST=mongo
+      - MONGO_DB=pets_database
+    depends_on:
+      mongo:
+        condition: service_healthy
+    networks:
+      - pets-network
+    volumes:
+      - .:/app
+
+networks:
+  pets-network:
+    driver: bridge
+
+volumes:
+  mongo_data:
