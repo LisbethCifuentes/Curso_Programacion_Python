@@ -1,0 +1,35 @@
+Entrega Proyecto Final – Análisis de Producción de Energía Solar
+
+Para el desarrollo del proyecto final se realizó un análisis y modelo de predicción de la producción de energía solar, 
+aplicando los conocimientos adquiridos a lo largo de las diferentes materias del curso de Python, 
+incluyendo manejo de datos, análisis exploratorio, visualización, Machine Learning y buenas prácticas de organización de proyectos.
+
+El proyecto fue implementado en dos entornos diferentes:
+
+Google Colab
+Se desarrolló un notebook completo que incluye:
+
+* Carga y preparación del dataset
+* Análisis exploratorio de datos (EDA)
+*Entrenamiento y evaluación de un modelo de regresión
+* Resultados y conclusiones
+
+Enlace al notebook en Colab: 
+
+https://colab.research.google.com/drive/1-g3-OtbXw3tcHUblwc7N6_3vsOhtZfnT?usp=sharing
+
+Entorno local – Visual Studio Code
+Se desarrolló el mismo proyecto de manera modular en un entorno local, utilizando scripts independientes para:
+
+* Preparación de datos
+* Análisis exploratorio
+* Entrenamiento del modelo
+* Evaluación de resultados
+
+Este desarrollo fue organizado bajo una estructura profesional de carpetas y scripts, y fue subido a GitHub como repositorio del proyecto.
+
+Enlace al repositorio en GitHub:
+
+https://github.com/LisbethCifuentes/Analisis_Produccion_de_energia_solar
+
+El proyecto evidencia la aplicación práctica de los conceptos aprendidos durante el curso.
